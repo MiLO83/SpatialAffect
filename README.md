@@ -23,6 +23,7 @@ public class SpatialAffect : MonoBehaviour
     public int frameCount = 0;
     public byte[] imageBytes;
 
+    // Start is called before the first frame update
     void Start()
     {
         gridColors = new Color32[Screen.width * Screen.height];
@@ -66,26 +67,26 @@ public class SpatialAffect : MonoBehaviour
                             angle = 360 - angle;
                         }
 
-                        if (screenPosition.x > 0 && screenPosition.x < Screen.width && screenPosition.y > 0 && screenPosition.y < Screen.height && angle > -45 && angle < 45 && screenPosition.x + (screenPosition.y * Screen.width) < gridColors.Length && gridColors[(int)(screenPosition.x + (screenPosition.y * (float)Screen.width))].a < 255 - (byte)screenPosition.z * 2)
+                        if (screenPosition.x > 0 && screenPosition.x < Screen.width && screenPosition.y > 0 && screenPosition.y < Screen.height && angle > -45 && angle < 45 && screenPosition.x + (screenPosition.y * Screen.width) < gridColors.Length && gridColors[(int)(screenPosition.x + (screenPosition.y * (float)Screen.width))].a < 255 - (byte)screenPosition.z)
                         {
-                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].a = (byte)Mathf.Clamp((255 - (screenPosition.z * 2)), 0, 255);
-                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].r = (byte)((x + gridSize / 2) * (255f / ((float)gridSize)));
-                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].g = (byte)((y + gridSize / 2) * (255f / ((float)gridSize)));
-                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].b = (byte)((z + gridSize / 2) * (255f / ((float)gridSize)));
+                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].a = (byte)Mathf.Clamp((255 - (screenPosition.z)), 0, 255);
+                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].r = (byte)((x + (gridSize / 2)) * (255f / ((float)gridSize)));
+                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].g = (byte)((y + (gridSize / 2)) * (255f / ((float)gridSize)));
+                            gridColors[(int)(screenPosition.x + (screenPosition.y * Screen.width))].b = (byte)((z + (gridSize / 2)) * (255f / ((float)gridSize)));
                         }
-                        if (screenPosition.x > 0 && screenPosition.x < Screen.width && screenPosition.y > 0 && screenPosition.y < Screen.height && angle > -45 && angle < 45 && (int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2))) < gridColorsHR.Length && gridColorsHR[(int)((screenPosition.x / 2f) + ((screenPosition.y / 2f)  * ((float)Screen.width / 2f)))].a < 255 - (byte)screenPosition.z * 2)
+                        if (screenPosition.x > 0 && screenPosition.x < Screen.width && screenPosition.y > 0 && screenPosition.y < Screen.height && angle > -45 && angle < 45 && (int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2))) < gridColorsHR.Length && gridColorsHR[(int)((screenPosition.x / 2f) + ((screenPosition.y / 2f)  * ((float)Screen.width / 2f)))].a < 255 - (byte)screenPosition.z)
                         {
-                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].a = (byte)Mathf.Clamp((255 - (screenPosition.z * 2)), 0, 255);
-                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].r = (byte)((x + gridSize / 2) * (255f / ((float)gridSize)));
-                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].g = (byte)((y + gridSize / 2) * (255f / ((float)gridSize)));
-                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].b = (byte)((z + gridSize / 2) * (255f / ((float)gridSize)));
+                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].a = (byte)Mathf.Clamp((255 - (screenPosition.z)), 0, 255);
+                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].r = (byte)((x + (gridSize / 2)) * (255f / ((float)gridSize)));
+                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].g = (byte)((y + (gridSize / 2)) * (255f / ((float)gridSize)));
+                            gridColorsHR[(int)((screenPosition.x / 2) + ((screenPosition.y / 2) * (Screen.width / 2)))].b = (byte)((z + (gridSize / 2)) * (255f / ((float)gridSize)));
                         }
-                        if (screenPosition.x > 0 && screenPosition.x < Screen.width && screenPosition.y > 0 && screenPosition.y < Screen.height && angle > -45 && angle < 45 && (int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4))) < gridColorsQR.Length && gridColorsQR[(int)((screenPosition.x / 4f) + ((screenPosition.y / 4f)  * ((float)Screen.width / 4f)))].a < 255 - (byte)screenPosition.z * 2)
+                        if (screenPosition.x > 0 && screenPosition.x < Screen.width && screenPosition.y > 0 && screenPosition.y < Screen.height && angle > -45 && angle < 45 && (int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4))) < gridColorsQR.Length && gridColorsQR[(int)((screenPosition.x / 4f) + ((screenPosition.y / 4f)  * ((float)Screen.width / 4f)))].a < 255 - (byte)screenPosition.z)
                         {
-                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].a = (byte)Mathf.Clamp((255 - (screenPosition.z * 2)), 0, 255);
-                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].r = (byte)((x + gridSize / 2) * (255f / ((float)gridSize)));
-                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].g = (byte)((y + gridSize / 2) * (255f / ((float)gridSize)));
-                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].b = (byte)((z + gridSize / 2) * (255f / ((float)gridSize)));
+                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].a = (byte)Mathf.Clamp((255 - (screenPosition.z)), 0, 255);
+                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].r = (byte)((x + (gridSize / 2)) * (255f / ((float)gridSize)));
+                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].g = (byte)((y + (gridSize / 2)) * (255f / ((float)gridSize)));
+                            gridColorsQR[(int)((screenPosition.x / 4) + ((screenPosition.y / 4) * (Screen.width / 4)))].b = (byte)((z + (gridSize / 2)) * (255f / ((float)gridSize)));
                         }
                     }
                 }
@@ -119,8 +120,10 @@ public class SpatialAffect : MonoBehaviour
             gridColorsQRTexture2D.Apply();
             imageBytes = gridColorsQRTexture2D.EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/../Images/" + frameCount.ToString("0000") + "_128.png", imageBytes);
-
+            
+            Debug.Log("Frame " + frameCount);
         }
     }
 }
+
 ```
