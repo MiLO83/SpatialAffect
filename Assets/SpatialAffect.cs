@@ -120,7 +120,7 @@ public class SpatialAffect : MonoBehaviour
             imageBytes = gridColorsQRTexture2D.EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/../Images/" + frameCount.ToString("0000") + "_128.png", imageBytes);
             
-            Debug.Log("Frame " + frameCount);
+            Debug.Log("Frame " + frameCount++);
         }
     }
 }
