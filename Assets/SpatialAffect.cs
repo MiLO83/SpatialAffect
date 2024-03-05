@@ -12,7 +12,6 @@ public class SpatialAffect : MonoBehaviour
     private Color32[] gridColors;
     private Color32[] gridColorsHR;
     private Color32[] gridColorsQR;
-    //public RenderTexture gridColorsRT;
     public Texture2D gridColorsTexture2D;
     public Texture2D gridColorsHRTexture2D;
     public Texture2D gridColorsQRTexture2D;
@@ -22,13 +21,13 @@ public class SpatialAffect : MonoBehaviour
     public int gridSize = 256;
     public int frameCount = 0;
     public byte[] imageBytes;
+
     // Start is called before the first frame update
     void Start()
     {
         gridColors = new Color32[Screen.width * Screen.height];
         gridColorsHR = new Color32[(Screen.width / 2) * (Screen.height / 2)];
         gridColorsQR = new Color32[(Screen.width / 4) * (Screen.height / 4)];
-        //gridColorsRT = new RenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32, 0);
         gridColorsTexture2D = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
         gridColorsHRTexture2D = new Texture2D(Screen.width / 2, Screen.height / 2, TextureFormat.ARGB32, false);
         gridColorsQRTexture2D = new Texture2D(Screen.width / 4, Screen.height / 4, TextureFormat.ARGB32, false);
@@ -38,21 +37,12 @@ public class SpatialAffect : MonoBehaviour
             Directory.CreateDirectory(Application.dataPath + "/../Images/");
         }
     }
-    /*
-    void OnPostRender()
-    {
-        // Create a command buffer
-        CommandBuffer cmd = new CommandBuffer();
-        cmd.Blit(gridColorsRT, BuiltinRenderTextureType.CameraTarget); // Blit to the screen
-        Graphics.ExecuteCommandBuffer(cmd);
-    }
-    */
+
     // Update is called once per frame
     void Update()
     {
         //if (frameCount++ < 2048)
         {
-            //RenderTexture.active = gridColorsRT;
             gridColors = new Color32[Screen.width * Screen.height];
             gridColorsHR = new Color32[(Screen.width / 2) * (Screen.height / 2)];
             gridColorsQR = new Color32[(Screen.width / 4) * (Screen.height / 4)];
@@ -130,13 +120,7 @@ public class SpatialAffect : MonoBehaviour
             imageBytes = gridColorsQRTexture2D.EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/../Images/" + frameCount.ToString("0000") + "_128.png", imageBytes);
             
-            Debug.Log("Frame " + frameCount + " / 2048");
-            Debug.Log((((Vector3.Angle(Camera.main.transform.right, WorldCenter.transform.right) + 180f) / 360f) * 255f));
-            Debug.Log((((Vector3.Angle(Camera.main.transform.up, WorldCenter.transform.up) + 180f) / 360f) * 255f));
-            Debug.Log((((Vector3.Angle(Camera.main.transform.forward, WorldCenter.transform.forward) + 180f) / 360f) * 255f));
+            Debug.Log("Frame " + frameCount);
         }
-        //Graphics.Blit(gridColorsTexture2D, gridColorsRT);
-
-
     }
 }
