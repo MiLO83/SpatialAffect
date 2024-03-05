@@ -1,3 +1,4 @@
+// By : Myles Cameron Johnston 03-05-2024
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -120,7 +121,8 @@ public class SpatialAffect : MonoBehaviour
             imageBytes = gridColorsQRTexture2D.EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/../Images/" + frameCount.ToString("0000") + "_128.png", imageBytes);
             
-            Debug.Log("Frame " + frameCount++);
+            Debug.Log("Frame " + frameCount);
+            frameCount++;
         }
     }
 }
