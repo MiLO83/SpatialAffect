@@ -437,7 +437,7 @@ MonoBehaviour:
   gridColorsHRTexture2D: {fileID: 0}
   gridColorsQRTexture2D: {fileID: 0}
   RawImage: {fileID: 513290928}
-  gridSize: 32
+  gridSize: 256
   frameCount: 0
   imageBytes: 
 --- !u!1 &963194225
